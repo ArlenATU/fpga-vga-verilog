@@ -62,3 +62,4 @@ Tested the output on my display via VGA port.
 
 ## Week 2
 I have come up with a new idea. I want to print out circles with rainbow colours.
+The distance formula from a center point(x, y) to compute circles is: r^2 = (x-xc)^2 + (y-yc)^2.
