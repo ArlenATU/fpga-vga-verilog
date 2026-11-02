@@ -57,6 +57,6 @@ I changed the code to test if I can generate a new image.
 I learned how the new code works.
 Tested the output on my display via VGA port.
 <img width="4000" height="3000" alt="myWork" src="https://github.com/user-attachments/assets/12a98705-565a-4ae8-9272-a841487cb36b" />
-
+<img width="1311" height="822" alt="Screenshot 2026-02-12 095654" src="https://github.com/user-attachments/assets/3835d8b7-e4b0-4852-8d5b-f9f02d601e7b" />
 
 ## Week 2
