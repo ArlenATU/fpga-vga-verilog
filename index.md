@@ -53,8 +53,10 @@ Images can be added by uploading them to the repository in a /docs/assets/images
 <img src="https://raw.githubusercontent.com/melgineer/fpga-vga-verilog/main/docs/assets/images/VGAPrjSrcs.png">
 
 ## Week 1
-I changed the code to test if I can generate a new image 
-I learned how the new code works
-Tested the output on my display via VGA port
+I changed the code to test if I can generate a new image.
+I learned how the new code works.
+Tested the output on my display via VGA port.
+<img width="4000" height="3000" alt="myWork" src="https://github.com/user-attachments/assets/12a98705-565a-4ae8-9272-a841487cb36b" />
+
 
 ## Week 2
