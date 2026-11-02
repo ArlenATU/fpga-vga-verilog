@@ -55,3 +55,6 @@ Images can be added by uploading them to the repository in a /docs/assets/images
 ## Week 1
 I changed the code to test if I can generate a new image 
 I learned how the new code works
+Tested the output on my display via VGA port
+
+## Week 2
