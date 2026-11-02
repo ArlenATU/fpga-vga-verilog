@@ -67,4 +67,5 @@ My new idea for my project is to printout rainbow. Here we can see my attempts:
 <img width="1920" height="1440" alt="35578283-97eb-4b0b-99c9-c70254fb1f89" src="https://github.com/user-attachments/assets/0d86e682-3dfa-4cdc-ab2a-ea49d487ed53" />
 <img width="1920" height="1440" alt="dd8db7f5-cad7-493b-a6ab-37442b4a13dc" src="https://github.com/user-attachments/assets/c0814c44-2cd7-4895-a5d5-ec17c21a3ed4" />
 <img width="1920" height="1440" alt="623890b6-547f-4050-aecd-ef4200a06a77" src="https://github.com/user-attachments/assets/2734820b-c512-4272-9fc6-8f2fcfb69d51" />
+<img width="1079" height="679" alt="image" src="https://github.com/user-attachments/assets/c0f82f17-b92c-43ea-85f4-1e568922ded3" />
 
