@@ -61,3 +61,4 @@ Tested the output on my display via VGA port.
 
 
 ## Week 2
+I have come up with a new idea. I want to print out circles with rainbow colours.
