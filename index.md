@@ -72,5 +72,8 @@ My new idea for my project is to printout rainbow. Here we can see my attempts:
 ## Week 3
 Working on my rainbow. I managed to write a code to print out arc image but haven't managed to make it in rainbow colours.
 <img width="1920" height="1440" alt="d5ee75ce-edef-4474-9125-15b064577aed" src="https://github.com/user-attachments/assets/2c79f2e1-f94e-427b-ad90-88a1aee3c967" />
+My attempt to print out rainbow colours 
+<img width="1920" height="1440" alt="d5ee75ce-edef-4474-9125-15b064577aed" src="https://github.com/user-attachments/assets/85c670b6-d478-4ebb-a54e-00472ed61abc" />
+
 
 
