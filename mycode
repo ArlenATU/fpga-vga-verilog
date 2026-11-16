@@ -1,0 +1,111 @@
+`timescale 1ns / 1ps
+
+module ColourStripes #(
+    parameter COUNTER_WIDTH = 32, 
+    parameter COUNT_FROM = 0,
+    parameter COUNT_TO = 32'b1 << 26,
+    parameter COUNT_RESET = 32'b1 << 27
+)(
+    input clk, rst,
+    input [10:0] row, col, 
+    output [3:0] red, green, blue
+);
+
+reg [3:0] red_reg, green_reg, blue_reg, red_next, green_next, blue_next;
+
+// Screen center/anchor parameters (for 640x480 resolution, anchored near bottom center)
+parameter [10:0] CENTER_X = 11'd320;
+parameter [10:0] CENTER_Y = 11'd450; // Shifted down so the arc arches across the sky
+
+// Signals for distance squared calculation
+reg [21:0] dx_sq;
+reg [21:0] dy_sq;
+reg [21:0] dist_sq;
+
+// Next state & output logic for a natural rainbow arc
+always @* begin
+    // Calculate squared horizontal distance from center
+    if (col >= CENTER_X)
+        dx_sq = (col - CENTER_X) * (col - CENTER_X);
+    else
+        dx_sq = (CENTER_X - col) * (CENTER_X - col);
+
+    // Calculate squared vertical distance from center
+    if (row >= CENTER_Y)
+        dy_sq = (row - CENTER_Y) * (row - CENTER_Y);
+    else
+        dy_sq = (CENTER_Y - row) * (CENTER_Y - row);
+
+    // Total squared distance (r^2 = dx^2 + dy^2)
+    dist_sq = dx_sq + dy_sq;
+
+    // Draw the arc only in the upper region relative to the anchor point, 
+    // and within specific radius bounds (e.g., inner and outer radius of the arch)
+    if (row <= CENTER_Y && dist_sq >= 22'd10000 && dist_sq <= 22'd90000) begin
+        // True Optical Spectrum: Red -> Orange -> Yellow -> Green -> Blue -> Indigo -> Violet
+        case (dist_sq[15:13])
+            3'd0: begin // Red to Orange
+                red_next   = 4'b1111;
+                green_next = {1'b0, dist_sq[11:9]}; 
+                blue_next  = 4'b0000;
+            end
+            3'd1: begin // Orange to Yellow
+                red_next   = 4'b1111;
+                green_next = {1'b1, dist_sq[11:9]}; 
+                blue_next  = 4'b0000;
+            end
+            3'd2: begin // Yellow to Green
+                red_next   = ~dist_sq[12:9]; 
+                green_next = 4'b1111;
+                blue_next  = 4'b0000;
+            end
+            3'd3: begin // Green to Blue
+                red_next   = 4'b0000;
+                green_next = ~dist_sq[12:9]; 
+                blue_next  = dist_sq[12:9]; 
+            end
+            3'd4: begin // Blue to Indigo
+                red_next   = dist_sq[11:9];     
+                green_next = 4'b0000;
+                blue_next  = 4'b1111;
+            end
+            3'd5: begin // Indigo to Violet
+                red_next   = 4'b1011 + dist_sq[11:10]; 
+                green_next = 4'b0000;
+                blue_next  = 4'b1111;
+            end
+            default: begin 
+                red_next   = 4'b1111;
+                green_next = 4'b0000;
+                blue_next  = 4'b1111;
+            end
+        endcase
+    end
+    else begin
+        // Background color (e.g., sky blue or black)
+        red_next   = 4'b0101;
+        green_next = 4'b1011;
+        blue_next  = 4'b1111;
+    end
+end
+
+// Register RGB outputs    
+always @(posedge clk, posedge rst) begin
+    if (rst == 1'b1) begin
+        red_reg   <= 4'b0000;
+        green_reg <= 4'b0000;
+        blue_reg  <= 4'b0000;
+    end
+    else begin
+        red_reg   <= red_next;
+        green_reg <= green_next;
+        blue_reg  <= blue_next;
+    end
+end
+
+// Assign output wires
+assign red = red_reg;
+assign green = green_reg;
+assign blue = blue_reg;
+
+endmodule
