@@ -28,23 +28,6 @@ To implement this, the pixel-generation block was modified to replace the origin
 Simulating the custom design involved running the testbench to verify that the coordinate counters correctly feed into the arithmetic distance equations without introducing combinatorial timing violations. Inspecting the simulation waveforms confirms that the RGB signals toggle at the precise x and y boundary conditions corresponding to the arc's geometry.(Insert simulation screenshot here)
 ### **Synthesis**
 During synthesis and implementation, the addition of arithmetic operations—specifically squaring coordinates and comparing radial thresholds—results in a noticeably higher utilization of Lookup Tables (LUTs) and arithmetic components compared to the lightweight template design. Because the logic evaluates pixel math combinationally every clock cycle, Vivado maps these operations across the Basys 3's logic fabric while maintaining the strict timing constraints required to keep the 25 MHz pixel clock stable.
-## **More Markdown Basics**
-This is a paragraph. Add an empty line to start a new paragraph.
-
-Font can be emphasised as *Italic* or **Bold**.
-
-Code can be highlighted by using `backticks`.
-
-Hyperlinks look like this: [GitHub Help](https://help.github.com/).
-
-A bullet list can be rendered as follows:
-- vectors
-- algorithms
-- iterators
-
-Images can be added by uploading them to the repository in a /docs/assets/images folder, and then rendering using HTML via githubusercontent.com as shown in the example below.
-
-<img src="https://raw.githubusercontent.com/melgineer/fpga-vga-verilog/main/docs/assets/images/VGAPrjSrcs.png">
 
 ## Week 1
 I changed the code to test if I can generate a new image.
