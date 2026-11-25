@@ -4,10 +4,7 @@ title: FPGA VGA Driver Project
 tags: fpga vga verilog
 categories: demo
 ---
-
-Add a short welcome message or introduction here. Aim to get the viewer interested in what follows! Guideline: 1 or 2 sentences. 
-
-I am adding a test sentence here at 13:24 on 03/12/24.
+Using Xilinx Vivado and a Basys 3 FPGA, this project implements a 640×480 VGA driver from a baseline colour-cycle template before adapting the pixel-generation logic to render concentric geometric arcs in real time.
 
 ## **Template VGA Design**
 ### **Project Set-Up**
