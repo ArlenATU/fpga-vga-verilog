@@ -8,17 +8,17 @@ Using Xilinx Vivado and a Basys 3 FPGA, this project implements a 640×480 VGA d
 
 ## **Template VGA Design**
 ### **Project Set-Up**
-Summarise the project set-up and design flow. Include a screenshot of your own set-up, for example see the image of my Project Summary window below. Guideline 1 short paragraph.
+The project is set up using Xilinx Vivado targeting the Artix-7 FPGA architecture on a Basys 3 board (xc7a35tcpg236-1), utilizing Verilog as the hardware description language and a mixed-language simulator. The design flow follows a standard FPGA development cycle: writing modular hardware description code for timing synchronization and pixel generation, simulating the waveform behavior to verify clock dividers and coordinate counters, synthesizing and implementing the netlist onto the programmable fabric, and finally programming the board to drive a live monitor via its physical VGA port.
 
-<img src="https://raw.githubusercontent.com/melgineer/fpga-vga-verilog/main/docs/assets/images/VGAPrjSum.png">
 ### **Template Code**
-Outline the structure and design of the Verilog code templates you were given. What do they do? Include reference to how a VGA interface works. Guideline: 2/3 short paragraphs, consider including screenshot(s).
+The template project is structured around a top-level module (VGATop) that coordinates two primary subsystems: a timing generator and a pixel-generation circuit. The VGA timing generator acts as a state machine driven by a partitioned pixel clock to produce accurate horizontal and vertical synchronization pulses (hsync and vsync), alongside active video region flags that determine when the beam is actively drawing on screen. This reflects standard VGA interface protocols—such as the 640x480 @ 60Hz standard—which require precise porch intervals and sync widths to properly lock a monitor's raster scan.
+
+Within this architecture, the template pixel generator maps the current row and column coordinates (x and y) to RGB color outputs. In the base VGColourCycle project, this logic uses coordinate counters or frame clocks to dynamically cycle pixel colors across the screen. By separating the timing control from the visual pattern logic, the design ensures clean adherence to hardware refresh rates while allowing flexible graphical generation.
 ### **Simulation**
-Explain the simulation process. Reference any important details, include a well-selected screenshot of the simulation. Guideline: 1/2 short paragraphs.
+The simulation process validates the timing generator and pixel pipeline prior to physical implementation by testing testbench waveforms against expected clock cycles. By inspecting the simulation waveform, you can verify that the pixel clock divider correctly scales the system clock, and that the horizontal and vertical counters reset at the proper scanline boundaries (e.g., reaching the end of a line and advancing the row). This step ensures that synchronization pulses maintain correct polarity and duration before deploying code to the hardware.
 ### **Synthesis**
-Describe the synthesis and implementation processes. Consider including 1/2 useful screenshot(s). Guideline: 1/2 short paragraphs.
-### **Demonstration**
-Perhaps add a picture of your demo. Guideline: 1/2 sentences.
+During synthesis and implementation, Vivado translates the Verilog source files into a gate-level netlist, maps the logic onto the Basys 3's Configurable Logic Blocks (CLBs), and routes the signals while meeting timing constraints. The implementation output generates a bitstream (.bit) file, detailing resource utilization such as flip-flops, look-up tables (LUTs), and I/O buffers required to drive the external VGA pins.### **Demonstration**
+
 
 ## **My VGA Design Edit**
 Introduce your own design idea. Consider how complex/achievabble this might be or otherwise. Reference any research you do online (use hyperlinks).
@@ -28,8 +28,7 @@ Briefly show how you changed the template code to display a different image. Dem
 Show how you simulated your own design. Are there any things to note? Demonstrate your understanding. Add a screenshot. Guideline: 1-2 short paragraphs.
 ### **Synthesis**
 Describe the synthesis & implementation outputs for your design, are there any differences to that of the original design? Guideline 1-2 short paragraphs.
-### **Demonstration**
-If you get your own design working on the Basys3 board, take a picture! Guideline: 1-2 sentences.
+
 
 ## **More Markdown Basics**
 This is a paragraph. Add an empty line to start a new paragraph.
