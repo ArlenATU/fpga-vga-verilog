@@ -21,14 +21,12 @@ During synthesis and implementation, Vivado translates the Verilog source files 
 
 
 ## **My VGA Design Edit**
-Introduce your own design idea. Consider how complex/achievabble this might be or otherwise. Reference any research you do online (use hyperlinks).
+Building upon the baseline template, the custom design idea shifts from a simple color-cycling pattern to procedurally rendering a series of concentric geometric arcs—resembling a multi-layered rainbow arc. Generating shapes dynamically on an FPGA without a dedicated frame buffer requires evaluating mathematical conditions on the fly during every active pixel clock cycle. By leveraging coordinate geometry (such as the equation of a circle, $r^2 = (x - x_c)^2 + (y - y_c)^2$), this approach is well within the logic capacity of the Artix-7 FPGA, provided arithmetic operations are kept efficient to meet timing closure. For further background on procedural shape generation and rasterization techniques, check out resources like FPGA Graphics Generation Concepts.
 ### **Code Adaptation**
-Briefly show how you changed the template code to display a different image. Demonstrate your understanding. Guideline: 1-2 short paragraphs.
-### **Simulation**
+To implement this, the pixel-generation block was modified to replace the original color-cycle logic with conditional checks based on the current horizontal (x) and vertical (y) scan coordinates. Instead of cycling colors across horizontal stripes, the code calculates the squared radial distance from a designated center point on the screen. By defining distinct inner and outer radius thresholds, different color values are assigned to the RGB output buses depending on which radial band the current pixel falls into, successfully creating distinct concentric arches on the display.### **Simulation**
 Show how you simulated your own design. Are there any things to note? Demonstrate your understanding. Add a screenshot. Guideline: 1-2 short paragraphs.
 ### **Synthesis**
-Describe the synthesis & implementation outputs for your design, are there any differences to that of the original design? Guideline 1-2 short paragraphs.
-
+Simulating the custom design involved running the testbench to verify that the coordinate counters correctly feed into the arithmetic distance equations without introducing combinatorial timing violations. Inspecting the simulation waveforms confirms that the RGB signals toggle at the precise x and y boundary conditions corresponding to the arc's geometry.(Insert simulation screenshot here)
 
 ## **More Markdown Basics**
 This is a paragraph. Add an empty line to start a new paragraph.
